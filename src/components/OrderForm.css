@@ -1,0 +1,67 @@
+
+.f1 {
+    font-family: 'Dela Gothic One', cursive;
+}
+
+.error {
+    color: rgb(147, 0, 0);
+    margin: 5px;
+}
+
+.img {
+    width: inherit;
+    display: block;
+    margin: auto;
+}
+
+/* Subtitles */
+.subtitle{
+    margin: 1rem auto;
+}
+
+/* Subsections */
+.subsection{
+    padding: .5rem;
+    border-style: solid;
+    border-color: #eaeaea;
+    border-width: 1px;
+    margin: .5rem auto;
+    
+}
+
+select, input {
+    display: block;
+    box-sizing: border-box;
+    width: 50%;
+    border-radius: 4px;
+    border: 1px solid white;
+    padding: 10px 15px;
+    font-size: 14px;
+    margin: 1rem auto !important;
+}
+
+/* SUBMIT BUTTON */
+input[type="submit"] {
+    background: #ec5990;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 10px;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background: #bf1650;
+}
+
+button[type="submit"]:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    opacity: 0.8;
+}

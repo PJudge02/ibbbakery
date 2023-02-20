@@ -46,12 +46,12 @@ const OrderCard = (props) => {
     const { register } = useForm()
 
     return (
-        <div className='dib br3 pa3 ma2 bw2 shadow-5 tc w-75-l w-75-m card'>
+        <div className='dib br3 pa3 ma2 bw2 tc w-75-l w-75-m card'>
             {/* dib br3 pa3 ma2 bw2 shadow-5 tc w-40-l w-60-m card */}
 
-            <h1>{title}</h1>
+            {/* <h1>{title}</h1> */}
             {loadImg(breadType, descriptiom)}
-            <h2>Price is: {price}</h2>
+            <h1>{title} {price}</h1>
             {quantitySelector(breadType, register, setPlainQuanity, setChocolateWalnutQuantity, setSpecial1Quantity)}
 
         </div>

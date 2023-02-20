@@ -2,6 +2,10 @@
     color: white;
 }
 
+br {
+    border-top: dotted 1px;
+}
+
 .f1 {
     font-family: 'Dela Gothic One', cursive;
 }
@@ -25,8 +29,8 @@
 /* Subsections */
 .subsection{
     padding: .5rem;
-    border-style: solid;
-    border-color: #eaeaea;
+    /* border-style: solid;
+    border-color: #eaeaea; */
     border-width: 1px;
     margin: .5rem auto;
     
@@ -41,6 +45,10 @@ select, input {
     padding: 10px 15px;
     font-size: 14px;
     margin: 1rem auto !important;
+}
+
+.deliveryInfo, .contactInfo{
+    margin-bottom: 2rem;
 }
 
 /* SUBMIT BUTTON */

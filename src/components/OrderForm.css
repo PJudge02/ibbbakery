@@ -57,7 +57,7 @@ input[type="submit"] {
 
 button[type="submit"]:hover,
 input[type="submit"]:hover {
-  background: #765200;
+  background: rgb(158, 112, 3);
 }
 
 button[type="submit"]:active,

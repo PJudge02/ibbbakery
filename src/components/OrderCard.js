@@ -6,11 +6,11 @@ import './OrderCard.css'
 function loadImg(breadType, descriptiom) {
     switch (breadType) {
         case 'plain':
-            return <img className='br4 img' src={require('../images/PlainBB.JPEG')} alt={descriptiom} />
+            return <img className='br4 img' src={require('../images/plainBB.jpg')} alt={descriptiom} />
         case 'chocolate walnut':
-            return <img className='br4 img' src={require('../images/CWBB.jpg')} alt={descriptiom} />
+            return <img className='br4 img' src={require('../images/chocolateWalnutBB.jpg')} alt={descriptiom} />
         case 'special1':
-            return <img className='br4 img' src={require('../images/PlainBB.JPEG')} alt={descriptiom} />
+            return <img className='br4 img' src={require('../images/chocolateBB.jpg')} alt={descriptiom} />
     }
 }
 
@@ -46,7 +46,8 @@ const OrderCard = (props) => {
     const { register } = useForm()
 
     return (
-        <div className='dib br3 pa3 ma2 bw2 shadow-5 tc w-40-l w-60-m card'>
+        <div className='dib br3 pa3 ma2 bw2 shadow-5 tc w-75-l w-75-m card'>
+            {/* dib br3 pa3 ma2 bw2 shadow-5 tc w-40-l w-60-m card */}
 
             <h1>{title}</h1>
             {loadImg(breadType, descriptiom)}

@@ -23,7 +23,7 @@ const OrderForm = (props) => {
     }
     return (
         <div className='bg-black dib br4 pa3 bw2 shadow-5 w-75 tc'>
-            <div className='f1'>IT'S BANANA BREAD</div>
+            <div className='f1'>Order Form</div>
 
             <form onSubmit={handleSubmit((data) => {
                 // http request

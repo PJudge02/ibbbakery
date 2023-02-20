@@ -12,6 +12,11 @@ const OrderForm = (props) => {
     const [chocolateWalnutQuantity, setChocolateWalnutQuantity] = useState(0)
     const [special1Quantity, setSpecial1Quantity] = useState(0)
     const [special2Quantity, setSpecial2Quantity] = useState(0)
+    const [discountCode, setDiscountCode] = useState('empty')
+    const plainPrice = 3.00;
+    const cwPrice = 4.00;
+    const special1Price = 4.00;
+    var discount = 0
 
     const submit = async (order) => {
         console.log(JSON.stringify(order))
@@ -19,6 +24,12 @@ const OrderForm = (props) => {
         const {error} = await supabase.from('orders').insert(order)
 
         console.log(error)
+    }
+    
+    const useDiscount = (code) =>{
+        if(code == 'telegram1'){
+            discount = parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity);
+        }
     }
 
     return (
@@ -29,10 +40,7 @@ const OrderForm = (props) => {
                 // http request
 
                 console.log(data)
-                console.log(plainQuantity)
-                console.log('Plain ' + plainQuantity)
-                console.log('CW ' + {chocolateWalnutQuantity})
-                console.log('Chocolate ' + {special1Quantity})
+                console.log(discountCode)
                 const totalCost = plainQuantity * 3.99 + chocolateWalnutQuantity * 4.99 + special1Quantity * 4.99
 
                 const order = {
@@ -92,9 +100,9 @@ const OrderForm = (props) => {
                 <hr className='w-75-l w-75-m'/>
                 <div className='subsection'>
                     {/* <div className='f2 subtitle'>Menu</div> */}
-                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$5.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$5.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
+                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$3.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$4.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$4.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
                     {/* {<OrderCard title={'Plain Banana Bread'} breadType={'plain'} description={'Chocolate Walnut BB'} price={'$3.99'} setQuantity={(e) => setQuantity(e.target.value)} />} */}
                 </div>
 
@@ -114,7 +122,11 @@ const OrderForm = (props) => {
                 {/* Purchase Information */}
                 <div className='subsection'>
                     <div className='f2 subtitle'>Payment Information</div>
-                    <div className='f3'>Total = ${Math.round((plainQuantity * 3.99 + chocolateWalnutQuantity * 4.99 + special1Quantity * 4.99 )*100)/100 }</div>
+                    <div className='f3'>Discount Code</div>
+                    <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => setDiscountCode(e.target.value)} />
+                    {useDiscount(discountCode)}
+                    {console.log(discount)}
+                    <div className='f3'>Total = ${Math.round((plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount)) }</div>
                 </div>
 
                 <input type="submit" />

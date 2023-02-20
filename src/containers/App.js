@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import OrderForm from '../components/OrderForm.js';
+// import Hi from '../Hi.js'
 
 class App extends React.Component {
 
@@ -9,6 +10,7 @@ class App extends React.Component {
       <div className="tc">
         {/* <OrderSubmitted/> */}
         <OrderForm />
+        {/* <Hi/> */}
       </div>
     )
   }

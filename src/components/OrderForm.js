@@ -4,7 +4,7 @@ import OrderCard from './OrderCard'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { supabase } from '../supabaseClient'
-import { Routes, Route, Navigate } from 'react-router-dom'
+// import { Routes, Route, Navigate } from 'react-router-dom'
 
 const OrderForm = (props) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm()
@@ -17,6 +17,7 @@ const OrderForm = (props) => {
     const cwPrice = 4.00;
     const special1Price = 4.00;
     var discount = 0
+    const [submitConfirm, setSubmitConfirm] = useState(false)
 
     const submit = async (order) => {
         console.log(JSON.stringify(order))
@@ -57,12 +58,12 @@ const OrderForm = (props) => {
                     total: totalCost
                 }
 
-                // submit(order)
+                submit(order)
 
                 // {<Navigate to='/OrderSubmitted'/>}
                 // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
                 // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
-                console.log("hewawefawfawefawefawefawefawrgaergaergaegaegrargaethstykdsata3tayahfjf")
+                {setSubmitConfirm(true)}
             })}>
                 {/* Delivery Information */}
                 <div className='subsection deliveryInfo'>
@@ -129,9 +130,11 @@ const OrderForm = (props) => {
                     <div className='f3'>Total = ${Math.round((plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount)) }</div>
                 </div>
 
-                <input type="submit" />
-                {/* {<Navigate to='/OrderSubmitted'/>} */}
-
+                <input type="submit"/>
+                {console.log("ewaufhqi4wuhfqiwpeurfgqiwpurfqipufhqipufhqhiwuefhqipufhqpiuhfiqweufhqiwufhiquwfhwenfwkuefhcqiwn")}
+                {console.log(submitConfirm)}
+                {submitConfirm && <div className='f3 confirmation'>Your order has been submitted</div> }
+                
             </form>
 
         </div>

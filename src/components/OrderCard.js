@@ -1,5 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { useForm } from 'react-hook-form'
+import './OrderCard.css'
 
 
 function loadImg(breadType, descriptiom) {
@@ -45,7 +46,7 @@ const OrderCard = (props) => {
     const { register } = useForm()
 
     return (
-        <div className='bg-light-green dib br3 pa3 ma2 bw2 shadow-5 tc w-40-l w-60-m'>
+        <div className='dib br3 pa3 ma2 bw2 shadow-5 tc w-40-l w-60-m card'>
 
             <h1>{title}</h1>
             {loadImg(breadType, descriptiom)}

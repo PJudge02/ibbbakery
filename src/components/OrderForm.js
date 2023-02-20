@@ -1,9 +1,11 @@
 import React from 'react'
 import './OrderForm.css'
-import OrderCard from './OrderCard'
+import OrderCard from './OrderCard' 
+import OrderSubmitted from './OrderSubmitted'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import {supabase} from '../supabaseClient'
+import { supabase } from '../supabaseClient'
+import { Routes, Route } from 'react-router-dom'
 
 const OrderForm = (props) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm()
@@ -19,9 +21,8 @@ const OrderForm = (props) => {
 
         console.log(error)
     }
-
     return (
-        <div className='bg-gold dib br4 pa3 bw2 shadow-5 w-75 tc'>
+        <div className='bg-black dib br4 pa3 bw2 shadow-5 w-75 tc'>
             <div className='f1'>IT'S BANANA BREAD</div>
 
             <form onSubmit={handleSubmit((data) => {
@@ -48,7 +49,11 @@ const OrderForm = (props) => {
                     total: totalCost
                 }
 
-                submit(order)
+                // submit(order)
+
+                // {<Navigate to='/orderSubmittedPage'/>}
+                {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
+                console.log("hewawefawfawefawefawefawefawrgaergaergaegaegrargaethstykdsata3tayahfjf")
             })}>
                 {/* Delivery Information */}
                 <div className='subsection'>
@@ -71,11 +76,11 @@ const OrderForm = (props) => {
                         <option value='6:00pm-6:30pm'>6:00pm-6:30pm</option>
                         <option value='6:30pm-7:00pm'>6:30pm-7:00pm</option>
                         <option value='7:00pm-7:30pm'>7:00pm-7:30pm</option>
-                        <option value='7:30pm-8:00pm'>Hopeman</option>
-                        <option value='8:00pm-8:30pm'>Ketler</option>
-                        <option value='8:30pm-9:00pm'>Lincoln</option>
-                        <option value='9:00pm-9:30pm'>MAP</option>
-                        <option value='9:30pm-10:00pm'>MEP</option>
+                        <option value='7:30pm-8:00pm'>7:30pm-8:00pm</option>
+                        <option value='8:00pm-8:30pm'>8:00pm-8:30pm</option>
+                        <option value='8:30pm-9:00pm'>8:30pm-9:00pm</option>
+                        <option value='9:00pm-9:30pm'>9:00pm-9:30pm</option>
+                        <option value='9:30pm-10:00pm'>9:30pm-10:00pm</option>
                     </select>
                     <p className='error'>{errors.time?.message}</p> 
                     <input {...register('roomNumber', { required: '*The field above is required' })} type='text' placeholder='Room Number' />
@@ -105,7 +110,7 @@ const OrderForm = (props) => {
                 {/* Purchase Information */}
                 <div className='subsection'>
                     <div className='f2 subtitle'>Payment Information</div>
-                    <div className='f3'>Total = ${plainQuantity * 3.99 + chocolateWalnutQuantity * 4.99 + special1Quantity * 4.99}</div>
+                    <div className='f3'>Total = ${Math.round((plainQuantity * 3.99 + chocolateWalnutQuantity * 4.99 + special1Quantity * 4.99 )*100)/100 }</div>
                     
                 </div>
 

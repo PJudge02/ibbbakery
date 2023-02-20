@@ -1,5 +1,6 @@
 .f1, .f2, .f3, p, h1, h2, .subtitle {
     color: white;
+    font-family: 'Inter';
 }
 
 br {
@@ -7,7 +8,7 @@ br {
 }
 
 .f1 {
-    font-family: 'Dela Gothic One', cursive;
+    font-family: 'Dela Gothic One', cursive !important;
 }
 
 .error {

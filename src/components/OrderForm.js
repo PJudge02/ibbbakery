@@ -1,11 +1,10 @@
 import React from 'react'
 import './OrderForm.css'
 import OrderCard from './OrderCard' 
-import OrderSubmitted from './OrderSubmitted'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { supabase } from '../supabaseClient'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 const OrderForm = (props) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm()
@@ -21,6 +20,7 @@ const OrderForm = (props) => {
 
         console.log(error)
     }
+
     return (
         <div className='bg-black dib br4 pa3 bw2 shadow-5 w-75 tc'>
             <div className='f1'>Order Form</div>
@@ -51,8 +51,9 @@ const OrderForm = (props) => {
 
                 // submit(order)
 
-                // {<Navigate to='/orderSubmittedPage'/>}
-                {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
+                // {<Navigate to='/OrderSubmitted'/>}
+                // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
+                // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
                 console.log("hewawefawfawefawefawefawefawrgaergaergaegaegrargaethstykdsata3tayahfjf")
             })}>
                 {/* Delivery Information */}
@@ -91,9 +92,9 @@ const OrderForm = (props) => {
                 <hr className='w-75-l w-75-m'/>
                 <div className='subsection'>
                     {/* <div className='f2 subtitle'>Menu</div> */}
-                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'3.99'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'4.99'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'4.99'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
+                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$5.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$5.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
                     {/* {<OrderCard title={'Plain Banana Bread'} breadType={'plain'} description={'Chocolate Walnut BB'} price={'$3.99'} setQuantity={(e) => setQuantity(e.target.value)} />} */}
                 </div>
 
@@ -114,13 +115,10 @@ const OrderForm = (props) => {
                 <div className='subsection'>
                     <div className='f2 subtitle'>Payment Information</div>
                     <div className='f3'>Total = ${Math.round((plainQuantity * 3.99 + chocolateWalnutQuantity * 4.99 + special1Quantity * 4.99 )*100)/100 }</div>
-                    
                 </div>
 
-
-
-
                 <input type="submit" />
+                {/* {<Navigate to='/OrderSubmitted'/>} */}
 
             </form>
 

@@ -147,7 +147,7 @@ const OrderForm = (props) => {
                 <input type="submit" />
                 {console.log("ewaufhqi4wuhfqiwpeurfgqiwpurfqipufhqipufhqhiwuefhqipufhqpiuhfiqweufhqiwufhiquwfhwenfwkuefhcqiwn")}
                 {console.log(submitConfirm)}
-                {submitConfirm && <div className='f3 confirmation'>Your order has been submitted</div>}
+                {submitConfirm && <div className='f3 confirmation'>Your order has been submitted! Please check your email for your receipt.</div>}
 
             </form>
 

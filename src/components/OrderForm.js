@@ -1,9 +1,10 @@
 import React from 'react'
 import './OrderForm.css'
-import OrderCard from './OrderCard' 
+import OrderCard from './OrderCard'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { supabase } from '../supabaseClient'
+import emailjs from 'emailjs-com';
 // import { Routes, Route, Navigate } from 'react-router-dom'
 
 const OrderForm = (props) => {
@@ -22,49 +23,62 @@ const OrderForm = (props) => {
     const submit = async (order) => {
         console.log(JSON.stringify(order))
 
-        const {error} = await supabase.from('orders').insert(order)
+        const { error } = await supabase.from('orders').insert(order)
 
         console.log(error)
     }
-    
-    const useDiscount = (code) =>{
-        if(code == 'telegram1'){
+
+    const useDiscount = (code) => {
+        if (code == 'telegram1') {
             discount = parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity);
         }
+    }
+
+    const sendEmail = (data) => {
+        emailjs.send('service_s4jhuc5', 'template_t0a5rir', data, 'ITws7WsBCTsX0bKrH')
+            .then(function (response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function (error) {
+                console.log('FAILED...', error);
+            });
+        // e.target.reset();
     }
 
     return (
         <div className='bg-black dib br4 pa3 bw2 shadow-5 w-75 tc'>
             <div className='f1'>Order Form</div>
 
-            <form onSubmit={handleSubmit((data) => {
-                // http request
+            <form
+                onSubmit={handleSubmit((data) => {
+                    // http request
 
-                console.log(data)
-                console.log(discountCode)
-                const totalCost = plainQuantity * 3.99 + chocolateWalnutQuantity * 4.99 + special1Quantity * 4.99
 
-                const order = {
-                    id: Math.ceil(Date.now() / 1000 + data.roomNumber),
-                    qty_plain: plainQuantity,
-                    qty_cw: chocolateWalnutQuantity,
-                    qty_special1: special1Quantity,
-                    delivery_time: data.time,
-                    building_address: data.building,
-                    room_num: parseInt(data.roomNumber),
-                    name: data.name,
-                    phone_number: data.phone,
-                    email: data.email,
-                    total: totalCost
-                }
+                    console.log(data)
+                    console.log(discountCode)
+                    const totalCost = plainQuantity * 3.99 + chocolateWalnutQuantity * 4.99 + special1Quantity * 4.99
 
-                submit(order)
+                    const order = {
+                        id: Math.ceil(Date.now() / 1000 + data.roomNumber),
+                        qty_plain: plainQuantity,
+                        qty_cw: chocolateWalnutQuantity,
+                        qty_special1: special1Quantity,
+                        delivery_time: data.time,
+                        building_address: data.building,
+                        room_num: parseInt(data.roomNumber),
+                        name: data.name,
+                        phone_number: data.phone,
+                        email: data.email,
+                        total: totalCost
+                    }
 
-                // {<Navigate to='/OrderSubmitted'/>}
-                // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
-                // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
-                {setSubmitConfirm(true)}
-            })}>
+                    submit(order)
+
+                    // {<Navigate to='/OrderSubmitted'/>}
+                    // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
+                    // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
+                    { setSubmitConfirm(true) }
+                    { sendEmail(order) }
+                })} >
                 {/* Delivery Information */}
                 <div className='subsection deliveryInfo'>
                     <div className='f2 subtitle'>Delivery Information</div>
@@ -92,13 +106,13 @@ const OrderForm = (props) => {
                         <option value='9:00pm-9:30pm'>9:00pm-9:30pm</option>
                         <option value='9:30pm-10:00pm'>9:30pm-10:00pm</option>
                     </select>
-                    <p className='error'>{errors.time?.message}</p> 
+                    <p className='error'>{errors.time?.message}</p>
                     <input {...register('roomNumber', { required: '*The field above is required' })} type='text' placeholder='Room Number' />
                     <p className='error'>{errors.roomNumber?.message}</p>
                 </div>
 
                 {/* Menu */}
-                <hr className='w-75-l w-75-m'/>
+                <hr className='w-75-l w-75-m' />
                 <div className='subsection'>
                     {/* <div className='f2 subtitle'>Menu</div> */}
                     {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$3.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
@@ -107,7 +121,7 @@ const OrderForm = (props) => {
                     {/* {<OrderCard title={'Plain Banana Bread'} breadType={'plain'} description={'Chocolate Walnut BB'} price={'$3.99'} setQuantity={(e) => setQuantity(e.target.value)} />} */}
                 </div>
 
-                <hr className='w-75-l w-75-m'/>
+                <hr className='w-75-l w-75-m' />
                 {/* Contact info */}
                 <div className='subsection contactInfo'>
                     <div className='f2 subtitle'>Contact Information</div>
@@ -119,7 +133,7 @@ const OrderForm = (props) => {
                     <p className='error'>{errors.name?.message}</p>
                 </div>
 
-                <hr className='w-75-l w-75-m'/>
+                <hr className='w-75-l w-75-m' />
                 {/* Purchase Information */}
                 <div className='subsection'>
                     <div className='f2 subtitle'>Payment Information</div>
@@ -127,14 +141,14 @@ const OrderForm = (props) => {
                     <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => setDiscountCode(e.target.value)} />
                     {useDiscount(discountCode)}
                     {console.log(discount)}
-                    <div className='f3'>Total = ${Math.round((plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount)) }</div>
+                    <div className='f3'>Total = ${Math.round((plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount))}</div>
                 </div>
 
-                <input type="submit"/>
+                <input type="submit" />
                 {console.log("ewaufhqi4wuhfqiwpeurfgqiwpurfqipufhqipufhqhiwuefhqipufhqpiuhfiqweufhqiwufhiquwfhwenfwkuefhcqiwn")}
                 {console.log(submitConfirm)}
-                {submitConfirm && <div className='f3 confirmation'>Your order has been submitted</div> }
-                
+                {submitConfirm && <div className='f3 confirmation'>Your order has been submitted</div>}
+
             </form>
 
         </div>

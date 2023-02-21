@@ -55,7 +55,7 @@ const OrderForm = (props) => {
 
                     console.log(data)
                     console.log(discountCode)
-                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price
+                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount
 
                     const order = {
                         id: Math.ceil(Date.now() / 1000 + data.roomNumber),

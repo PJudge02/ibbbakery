@@ -14,9 +14,9 @@ const OrderForm = (props) => {
     const [special1Quantity, setSpecial1Quantity] = useState(0)
     const [special2Quantity, setSpecial2Quantity] = useState(0)
     const [discountCode, setDiscountCode] = useState('empty')
-    const plainPrice = 3.00;
-    const cwPrice = 4.00;
-    const special1Price = 4.00;
+    const plainPrice = 4.00;
+    const cwPrice = 5.00;
+    const special1Price = 5.00;
     var discount = 0
     const [submitConfirm, setSubmitConfirm] = useState(false)
 
@@ -117,9 +117,9 @@ const OrderForm = (props) => {
                 <hr className='w-75-l w-75-m' />
                 <div className='subsection'>
                     {/* <div className='f2 subtitle'>Menu</div> */}
-                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$3.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$4.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$4.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
+                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$5.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$5.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
                     {/* {<OrderCard title={'Plain Banana Bread'} breadType={'plain'} description={'Chocolate Walnut BB'} price={'$3.99'} setQuantity={(e) => setQuantity(e.target.value)} />} */}
                 </div>
 
@@ -147,7 +147,7 @@ const OrderForm = (props) => {
                 </div>
 
                 <input type="submit" />
-                {console.log("ewaufhqi4wuhfqiwpeurfgqiwpurfqipufhqipufhqhiwuefhqipufhqpiuhfiqweufhqiwufhiquwfhwenfwkuefhcqiwn")}
+                {/* {console.log("ewaufhqi4wuhfqiwpeurfgqiwpurfqipufhqipufhqhiwuefhqipufhqpiuhfiqweufhqiwufhiquwfhwenfwkuefhcqiwn")} */}
                 {console.log(submitConfirm)}
                 {submitConfirm && <div className='f3 confirmation'>Your order has been submitted! Please check your email for your receipt.</div>}
 

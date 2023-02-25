@@ -46,15 +46,14 @@ const OrderForm = (props) => {
 
     return (
         <div className='bg-black dib br4 pa3 bw2 shadow-5 w-75 tc'>
-            <div className='f1'>Order Form</div>
+            <div className='f1 order-form-txt'>Order Form</div>
 
             <form
                 onSubmit={handleSubmit((data) => {
                     // http request
 
 
-                    console.log(data)
-                    console.log(discountCode)
+                    // console.log(data)
                     const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount
                     // console.log("RIGHT HERE")
                     // console.log(totalCost)
@@ -82,8 +81,8 @@ const OrderForm = (props) => {
                     { sendEmail(order) }
                 })} >
                 {/* Delivery Information */}
-                <div className='subsection deliveryInfo'>
-                    <div className='f2 subtitle'>Delivery Information</div>
+                <div className='subsection-form deliveryInfo'>
+                    <div className='f2 subtitle-form order-form-txt'>Delivery Information</div>
                     <select {...register('building', { required: '*The field above is required' })} defaultValue={'Select'} id='building'>
                         <option value='Select' disabled> -- Select Building Location -- </option>
                         <option value='Alumni'>Alumni</option>
@@ -115,7 +114,7 @@ const OrderForm = (props) => {
 
                 {/* Menu */}
                 <hr className='w-75-l w-75-m' />
-                <div className='subsection'>
+                <div className='subsection-form'>
                     {/* <div className='f2 subtitle'>Menu</div> */}
                     {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$3.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
                     {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$4.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
@@ -125,8 +124,8 @@ const OrderForm = (props) => {
 
                 <hr className='w-75-l w-75-m' />
                 {/* Contact info */}
-                <div className='subsection contactInfo'>
-                    <div className='f2 subtitle'>Contact Information</div>
+                <div className='subsection-form contactInfo'>
+                    <div className='f2 subtitle-form order-form-txt'>Contact Information</div>
                     <input {...register('email', { required: '*The field above is required' })} type='text' placeholder='Email (ex. jonDoe@gmail.com)' />
                     <p className='error'>{errors.email?.message}</p>
                     <input {...register('phone', { required: '*The field above is required' })} type='text' placeholder='Phone Number (ex. 123-456-7890)' />
@@ -137,19 +136,17 @@ const OrderForm = (props) => {
 
                 <hr className='w-75-l w-75-m' />
                 {/* Purchase Information */}
-                <div className='subsection'>
-                    <div className='f2 subtitle'>Payment Information</div>
-                    <div className='f3'>Discount Code</div>
+                <div className='subsection-form'>
+                    <div className='f2 subtitle-form order-form-txt'>Payment Information</div>
+                    <div className='f3 order-form-txt'>Discount Code</div>
                     <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => setDiscountCode(e.target.value)} />
                     {useDiscount(discountCode)}
                     {console.log(discount)}
-                    <div className='f3'>Total = ${Math.round((plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount))}</div>
+                    <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount))}</div>
                 </div>
 
                 <input type="submit" />
-                {console.log("ewaufhqi4wuhfqiwpeurfgqiwpurfqipufhqipufhqhiwuefhqipufhqpiuhfiqweufhqiwufhiquwfhwenfwkuefhcqiwn")}
-                {console.log(submitConfirm)}
-                {submitConfirm && <div className='f3 confirmation'>Your order has been submitted! Please check your email for your receipt.</div>}
+                {submitConfirm && <div className='f3 confirmation order-form-txt'>Your order has been submitted! Please check your email for your receipt.</div>}
 
             </form>
 

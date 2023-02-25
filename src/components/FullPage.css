@@ -1,0 +1,53 @@
+.text{
+    color: white;
+    margin: 44px 0;
+    font-size: 1rem;
+    letter-spacing: .025rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.subtitle{
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.35rem;
+    width: calc(100%);
+    font-size: 0.875em;
+    line-height: 2;
+    font-weight: 600;
+    margin-bottom: 2.75rem;
+}
+
+.site-img{
+    width: 3rem;
+    height: 5rem;
+}
+
+/* section1 */
+#section1{
+    background-color: black;
+}
+
+/* Background  */
+#landing-view{
+    padding: 8rem 0;
+    background-image: linear-gradient(180deg, #D49506 24%, #D49506 27%, #000000 100%);
+    background-position: 0% 0%;
+}
+
+/* landing content */
+#landing-content{
+
+}
+
+/* Cover text */
+#cover-text{
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: 'Dela Gothic One', cursive;
+    letter-spacing: -0.075rem;
+    width: 100%;
+    font-size: 3.75em;
+    line-height: 1.125;
+    font-weight: 400;
+}

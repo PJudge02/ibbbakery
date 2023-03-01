@@ -1,12 +1,49 @@
-.text{
+#section1 {
+    background-color: black;
+    margin: 0;
+    padding: 5%;
+}
+
+#section2 {
+    background-color: #D49506;
+    margin: 0;
+    padding: 5%;
+}
+
+#section3 {
+    background-color: black;
+    margin: 0;
+    padding: 15% 5%;
+}
+
+#section4{
+    background-color: #D49506;
+    padding: 15% 7%;
+}
+
+.body-text-con {
+    padding: 7%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.text {
     color: white;
     margin: 44px 0;
     font-size: 1rem;
     letter-spacing: .025rem;
+    line-height: 2;
     font-family: 'Inter', sans-serif;
 }
 
-.subtitle{
+.heading {
+    color: white;
+    font-size: 3rem;
+    font-family: 'Dela Gothic One', cursive;
+}
+
+.subtitle {
     text-transform: uppercase;
     color: #FFFFFF;
     font-family: 'Inter', sans-serif;
@@ -18,30 +55,38 @@
     margin-bottom: 2.75rem;
 }
 
-.site-img{
+.site-img {
     width: 3rem;
-    height: 5rem;
+    /* width: 85%;
+    height: auto; */
+    width: 500px;
+    height: 600px;
+    object-fit: cover;
 }
 
-/* section1 */
-#section1{
+
+/* the div that holds images inside sections*/
+#body-img-con1 {
     background-color: black;
+    padding: 0;
+}
+#body-img-con2 {
+    background-color: #D49506;
+    padding: 0;
 }
 
-/* Background  */
-#landing-view{
+/* LANDING VIEW */
+#landing-view {
     padding: 8rem 0;
     background-image: linear-gradient(180deg, #D49506 24%, #D49506 27%, #000000 100%);
     background-position: 0% 0%;
 }
 
 /* landing content */
-#landing-content{
-
-}
+#landing-content {}
 
 /* Cover text */
-#cover-text{
+#cover-text {
     text-transform: uppercase;
     color: #FFFFFF;
     font-family: 'Dela Gothic One', cursive;
@@ -50,4 +95,12 @@
     font-size: 3.75em;
     line-height: 1.125;
     font-weight: 400;
+}
+
+/* RANDOM STUFF */
+
+.center-vert{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }

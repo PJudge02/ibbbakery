@@ -17,8 +17,9 @@
 }
 
 #section4{
-    background-color: #D49506;
-    padding: 15% 7%;
+    background-image: linear-gradient(180deg, #D49506 24%, #D49506 27%, #000000 100%);
+    background-position: 0% 0%;
+    padding: 7% 7%;
 }
 
 .body-text-con {
@@ -56,14 +57,23 @@
 }
 
 .site-img {
-    width: 3rem;
-    /* width: 85%;
-    height: auto; */
     width: 500px;
     height: 600px;
     object-fit: cover;
 }
 
+.page-line {
+    border-top: 1px solid #FFE500 !important;
+    opacity: 1 !important;
+    width: 15%;
+    margin: auto;
+    margin-bottom: 7%;
+    
+}
+
+.ibb-c {
+    color:#D49506 !important;
+}
 
 /* the div that holds images inside sections*/
 #body-img-con1 {
@@ -75,6 +85,55 @@
     padding: 0;
 }
 
+/* STYLING FOR BUTTONS */
+.button-txt{
+    color: white;
+}
+
+#landing-btn {
+    width: 15rem;
+    background-color: #D49506;
+    padding: 1rem 2rem;
+    margin: auto;
+}
+
+#fa-arrow-btn1{
+    color:white;
+    padding-left: .5rem;
+}
+
+#fa-circle-btn2{
+    color:white;
+}
+
+#fa-arrow-btn2 {
+    color: blue;
+}
+
+#fa-circle-btn3{
+    color: black;
+}
+
+#fa-arrow-btn3 {
+    color: white;
+}
+
+#fa-circle-btn4 {
+    color:#D49506;
+}
+
+.fa-buttom-page-icons {
+    color: black;
+}
+
+#telegram-fa {
+    color:#D49506
+}
+
+#telegram-fa-background {
+    color:black;
+}
+
 /* LANDING VIEW */
 #landing-view {
     padding: 8rem 0;
@@ -82,10 +141,6 @@
     background-position: 0% 0%;
 }
 
-/* landing content */
-#landing-content {}
-
-/* Cover text */
 #cover-text {
     text-transform: uppercase;
     color: #FFFFFF;
@@ -98,9 +153,18 @@
 }
 
 /* RANDOM STUFF */
-
 .center-vert{
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.margin-7-top {
+    margin-top: 7%;
+}
+
+#venmo-img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
 }

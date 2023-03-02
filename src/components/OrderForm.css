@@ -3,8 +3,11 @@
     font-family: 'Inter';
 }
 
-br {
-    border-top: dotted 1px;
+.order-form-line { 
+    border-top: 1px solid white !important;
+    opacity: 1 !important;
+    width: 75%;
+    margin: auto;
 }
 
 .f1 {

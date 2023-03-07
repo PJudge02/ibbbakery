@@ -38,8 +38,8 @@ const FullPage = (props) => {
                 <div className='col-lg-6' id='body-img-con1'><img className='site-img br4' width='50' src={require('../images/bananabreadinoven.jpg')} /></div>
             </div>
             <div className='row' id='section2'>
-                <div className='order-lg-1 order-md-2 order-sm-2 order-xs-2 col-lg-6 body-img-con2'><img className='site-img br4' src={require('../images/bananabreadOnTable.jpg')} /></div>
-                <div className='order-lg-2 order-md-1 order-sm-1 order-xs-1 col-lg-6'>
+                <div className='order-lg-first order-md-last order-sm-last order-xs-last col-lg-6 body-img-con2'><img className='site-img br4' src={require('../images/bananabreadOnTable.jpg')} /></div>
+                <div className='order-lg-last order-md-first order-sm-first order-xs-1 col-lg-6'>
                     <div className='body-text-con'>
                         <div className='subtitle '>SEE EM' IN THE BACK THERE?</div>
                         <div className='heading'>REAL BANANAS</div>

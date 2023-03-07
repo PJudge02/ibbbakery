@@ -41,7 +41,6 @@ const OrderForm = (props) => {
             }, function (error) {
                 console.log('FAILED...', error);
             });
-        // e.target.reset();
     }
 
     return (
@@ -52,11 +51,7 @@ const OrderForm = (props) => {
                 onSubmit={handleSubmit((data) => {
                     // http request
 
-
-                    // console.log(data)
                     const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount
-                    // console.log("RIGHT HERE")
-                    // console.log(totalCost)
 
                     const order = {
                         id: Math.ceil(Date.now() / 1000 + data.roomNumber),
@@ -74,9 +69,6 @@ const OrderForm = (props) => {
 
                     submit(order)
 
-                    // {<Navigate to='/OrderSubmitted'/>}
-                    // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
-                    // {<Routes><Route path='/OrderSubmitted' element={<OrderSubmitted/>}/></Routes>}
                     { setSubmitConfirm(true) }
                     { sendEmail(order) }
                 })} >
@@ -115,11 +107,9 @@ const OrderForm = (props) => {
                 {/* Menu */}
                 <hr className='order-form-line' />
                 <div className='subsection-form'>
-                    {/* <div className='f2 subtitle'>Menu</div> */}
                     {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
                     {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$5.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
                     {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$5.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
-                    {/* {<OrderCard title={'Plain Banana Bread'} breadType={'plain'} description={'Chocolate Walnut BB'} price={'$3.99'} setQuantity={(e) => setQuantity(e.target.value)} />} */}
                 </div>
 
                 <hr className='order-form-line' />

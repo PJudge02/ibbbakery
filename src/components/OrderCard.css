@@ -1,3 +1,9 @@
 .card {
     background-color: black;
 }
+
+.img-card {
+    width: inherit;
+    display: block;
+    margin: auto;
+}

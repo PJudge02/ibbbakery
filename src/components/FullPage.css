@@ -1,0 +1,170 @@
+#section1 {
+    background-color: black;
+    margin: 0;
+    padding: 5%;
+}
+
+#section2 {
+    background-color: #D49506;
+    margin: 0;
+    padding: 5%;
+}
+
+#section3 {
+    background-color: black;
+    margin: 0;
+    padding: 15% 5%;
+}
+
+#section4{
+    background-image: linear-gradient(180deg, #D49506 24%, #D49506 27%, #000000 100%);
+    background-position: 0% 0%;
+    padding: 7% 7%;
+}
+
+.body-text-con {
+    padding: 7%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.text {
+    color: white;
+    margin: 44px 0;
+    font-size: 1rem;
+    letter-spacing: .025rem;
+    line-height: 2;
+    font-family: 'Inter', sans-serif;
+}
+
+.heading {
+    color: white;
+    font-size: 3rem;
+    font-family: 'Dela Gothic One', cursive;
+}
+
+.subtitle {
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.35rem;
+    width: calc(100%);
+    font-size: 0.875em;
+    line-height: 2;
+    font-weight: 600;
+    margin-bottom: 2.75rem;
+}
+
+.site-img {
+    width: 500px;
+    height: 600px;
+    object-fit: cover;
+}
+
+.page-line {
+    border-top: 1px solid #FFE500 !important;
+    opacity: 1 !important;
+    width: 15%;
+    margin: auto;
+    margin-bottom: 7%;
+    
+}
+
+.ibb-c {
+    color:#D49506 !important;
+}
+
+/* the div that holds images inside sections*/
+#body-img-con1 {
+    background-color: black;
+    padding: 0;
+}
+#body-img-con2 {
+    background-color: #D49506;
+    padding: 0;
+}
+
+/* STYLING FOR BUTTONS */
+.button-txt{
+    color: white;
+}
+
+#landing-btn {
+    width: 15rem;
+    background-color: #D49506;
+    padding: 1rem 2rem;
+    margin: auto;
+}
+
+#fa-arrow-btn1{
+    color:white;
+    padding-left: .5rem;
+}
+
+#fa-circle-btn2{
+    color:white;
+}
+
+#fa-arrow-btn2 {
+    color: blue;
+}
+
+#fa-circle-btn3{
+    color: black;
+}
+
+#fa-arrow-btn3 {
+    color: white;
+}
+
+#fa-circle-btn4 {
+    color:#D49506;
+}
+
+.fa-buttom-page-icons {
+    color: black;
+}
+
+#telegram-fa {
+    color:#D49506
+}
+
+#telegram-fa-background {
+    color:black;
+}
+
+/* LANDING VIEW */
+#landing-view {
+    padding: 8rem 0;
+    background-image: linear-gradient(180deg, #D49506 24%, #D49506 27%, #000000 100%);
+    background-position: 0% 0%;
+}
+
+#cover-text {
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: 'Dela Gothic One', cursive;
+    letter-spacing: -0.075rem;
+    width: 100%;
+    font-size: 3.75em;
+    line-height: 1.125;
+    font-weight: 400;
+}
+
+/* RANDOM STUFF */
+.center-vert{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.margin-7-top {
+    margin-top: 7%;
+}
+
+#venmo-img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}

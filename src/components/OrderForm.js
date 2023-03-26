@@ -18,6 +18,7 @@ const OrderForm = (props) => {
     const cwPrice = 4.00;
     const special1Price = 4.00;
     var discount = 0
+    
     const [submitConfirm, setSubmitConfirm] = useState(false)
 
     const submit = async (order) => {
@@ -52,7 +53,7 @@ const OrderForm = (props) => {
                     // http request
 
                     const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount
-
+                    
                     const order = {
                         id: Math.ceil(Date.now() / 1000 + data.roomNumber),
                         qty_plain: plainQuantity,
@@ -64,7 +65,8 @@ const OrderForm = (props) => {
                         name: data.name,
                         phone_number: data.phone,
                         email: data.email,
-                        total: totalCost
+                        total: totalCost,
+                        okay_with_photos: data.takePhoto
                     }
 
                     submit(order)
@@ -122,6 +124,10 @@ const OrderForm = (props) => {
                     <p className='error'>{errors.phone?.message}</p>
                     <input {...register('name', { required: '*The field above is required' })} type='text' placeholder='First & Last Name' />
                     <p className='error'>{errors.name?.message}</p>
+                    <div className='photo-q-fit'>
+                        <input {...register('takePhoto')} className='photo-q-box' type='checkbox'/>
+                        <text id='photo-q-text'>I would not mind getting a photo for ibb marketing</text>
+                    </div>
                 </div>
 
                 <hr className='tc order-form-line' />
@@ -131,7 +137,6 @@ const OrderForm = (props) => {
                     <div className='f3 order-form-txt'>Discount Code</div>
                     <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => setDiscountCode(e.target.value)} />
                     {useDiscount(discountCode)}
-                    {console.log(discount)}
                     <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount))}</div>
                 </div>
 

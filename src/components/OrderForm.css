@@ -79,3 +79,25 @@ input[type="submit"]:active {
     border: 1px solid transparent;
     opacity: 0.8;
 }
+
+/* PHOTO INPUT STYLING */
+.photo-q-fit{
+    display: block;
+    box-sizing: border-box;
+    width: 50%;
+    margin: 1rem auto !important;
+    text-align: left;
+}
+
+.photo-q-box {
+    display: inline;
+    width: auto !important;
+    margin-right: .25rem !important;
+    margin-bottom: 0 !important;
+}
+
+#photo-q-text {
+    display: inline;
+    color: white;
+    line-height: .25rem;
+}

@@ -12,11 +12,12 @@ const OrderForm = (props) => {
     const [plainQuantity, setPlainQuanity] = useState(0);
     const [chocolateWalnutQuantity, setChocolateWalnutQuantity] = useState(0)
     const [special1Quantity, setSpecial1Quantity] = useState(0)
-    const [special2Quantity, setSpecial2Quantity] = useState(0)
+    const [special2Quantity, setSpecial2Quantity] = useState(0) 
     const [discountCode, setDiscountCode] = useState('empty')
     const plainPrice = 3.00;
     const cwPrice = 4.00;
     const special1Price = 4.00;
+    const special2Price = 4.00;
     var discount = 0
     
     const [submitConfirm, setSubmitConfirm] = useState(false)
@@ -52,13 +53,14 @@ const OrderForm = (props) => {
                 onSubmit={handleSubmit((data) => {
                     // http request
 
-                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount
+                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price + special2Quantity * special2Price - discount
                     
                     const order = {
                         id: Math.ceil(Date.now() / 1000 + data.roomNumber),
                         qty_plain: plainQuantity,
                         qty_cw: chocolateWalnutQuantity,
                         qty_special1: special1Quantity,
+                        qty_special2: special2Quantity,
                         delivery_time: data.time,
                         building_address: data.building,
                         room_num: parseInt(data.roomNumber),
@@ -109,9 +111,10 @@ const OrderForm = (props) => {
                 {/* Menu */}
                 <hr className='order-form-line' />
                 <div className='subsection-form'>
-                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$5.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$5.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
+                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$3.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$4.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
+                    {<OrderCard title={'Salted Carmel'} breadType={'special2'} description={'Salted Carmel BB'} price={'$4.00'} setSpecial2Quantity={(e) => setSpecial2Quantity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$4.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
                 </div>
 
                 <hr className='order-form-line' />
@@ -126,7 +129,7 @@ const OrderForm = (props) => {
                     <p className='error'>{errors.name?.message}</p>
                     <div className='photo-q-fit'>
                         <input {...register('takePhoto')} className='photo-q-box' type='checkbox'/>
-                        <text id='photo-q-text'>I would not mind getting a photo for ibb marketing</text>
+                        <div id='photo-q-text'>I would not mind getting a photo for ibb marketing</div>
                     </div>
                 </div>
 
@@ -137,7 +140,9 @@ const OrderForm = (props) => {
                     <div className='f3 order-form-txt'>Discount Code</div>
                     <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => setDiscountCode(e.target.value)} />
                     {useDiscount(discountCode)}
-                    <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price - discount))}</div>
+                    <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice + 
+                        chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price
+                        + special2Quantity * special2Price - discount))}</div>
                 </div>
 
                 <input type="submit" />

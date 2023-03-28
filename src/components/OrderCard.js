@@ -51,19 +51,27 @@ function quantitySelector(breadType, register, setPlainQuanity, setChocolateWaln
 }
 
 const OrderCard = (props) => {
-    const { title, breadType, descriptiom, price, setPlainQuanity, setChocolateWalnutQuantity, setSpecial1Quantity, setSpecial2Quantity} = props
+    const { title, breadType, description, price, setPlainQuanity, setChocolateWalnutQuantity, setSpecial1Quantity, setSpecial2Quantity } = props
     const { register } = useForm()
 
     return (
-        <div className='dib br3 pa3 ma2 bw2 tc w-75-l w-75-m card order-form-txt'>
-            {/* dib br3 pa3 ma2 bw2 shadow-5 tc w-40-l w-60-m card */}
+        <>{breadType == 'special2' ? (<div className='dib br3 pa3 ma2 bw2 tc w-75-l w-75-m card order-form-txt special'>
 
-            {/* <h1>*Seasonal Special*</h1> */}
-            {loadImg(breadType, descriptiom)}
+            <h1 id="order-card-special"><em>Seasonal Special</em></h1>
+            {loadImg(breadType, description)}
             <h1>{title} {price}</h1>
             {quantitySelector(breadType, register, setPlainQuanity, setChocolateWalnutQuantity, setSpecial1Quantity, setSpecial2Quantity)}
 
-        </div>
+        </div>) :
+            (<div className='dib br3 pa3 ma2 bw2 tc w-75-l w-75-m card order-form-txt'>
+
+                {/* <h1>*Seasonal Special*</h1> */}
+                {loadImg(breadType, description)}
+                <h1>{title} {price}</h1>
+                {quantitySelector(breadType, register, setPlainQuanity, setChocolateWalnutQuantity, setSpecial1Quantity, setSpecial2Quantity)}
+
+            </div>
+            )}</>
     )
 }
 

@@ -129,7 +129,7 @@ const OrderForm = (props) => {
                     <p className='error'>{errors.name?.message}</p>
                     <div className='photo-q-fit'>
                         <input {...register('takePhoto')} className='photo-q-box' type='checkbox'/>
-                        <div id='photo-q-text'>I would not mind getting a photo for ibb marketing</div>
+                        <div id='photo-q-text'>Can we get a photo with you upon delivery?</div>
                     </div>
                 </div>
 

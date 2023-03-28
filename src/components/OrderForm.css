@@ -101,3 +101,14 @@ input[type="submit"]:active {
     color: white;
     line-height: .25rem;
 }
+
+/* SPECIAL OUTLINE FOR SEASONAL SPECIAL */
+.special {
+    border-color: #d49506;
+    /* background-color: #d49506 !important; */
+}
+
+#order-card-special {
+    font-size: calc(1.75rem + 1.5vw);
+    color:#d49506;
+}

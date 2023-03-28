@@ -57,7 +57,7 @@ const OrderCard = (props) => {
     return (
         <>{breadType == 'special2' ? (<div className='dib br3 pa3 ma2 bw2 tc w-75-l w-75-m card order-form-txt special'>
 
-            <h1 id="order-card-special"><em>Seasonal Special</em></h1>
+            <h1 id="order-card-special"><em><u>Seasonal Special</u></em></h1>
             {loadImg(breadType, description)}
             <h1>{title} {price}</h1>
             {quantitySelector(breadType, register, setPlainQuanity, setChocolateWalnutQuantity, setSpecial1Quantity, setSpecial2Quantity)}

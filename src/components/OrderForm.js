@@ -63,7 +63,7 @@ const OrderForm = (props) => {
                         qty_special2: special2Quantity,
                         delivery_time: data.time,
                         building_address: data.building,
-                        room_num: parseInt(data.roomNumber),
+                        room_num: data.roomNumber,
                         name: data.name,
                         phone_number: data.phone,
                         email: data.email,
@@ -104,7 +104,7 @@ const OrderForm = (props) => {
                         <option value='9:30pm-10:00pm'>9:30pm-10:00pm</option>
                     </select>
                     <p className='error'>{errors.time?.message}</p>
-                    <input {...register('roomNumber', { required: '*The field above is required' })} type='text' placeholder='Room Number' />
+                    <input {...register('roomNumber', { required: '*The field above is required' })} type='number' placeholder='Room Number' />
                     <p className='error'>{errors.roomNumber?.message}</p>
                 </div>
 

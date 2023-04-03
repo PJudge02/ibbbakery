@@ -39,6 +39,13 @@
     color: rgb(0, 192, 0);
 }
 
+/* Order Processing*/
+.processing{
+    color: rgb(161, 0, 0);
+}
+
+
+
 select, input {
     display: block;
     box-sizing: border-box;

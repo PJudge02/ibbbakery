@@ -21,6 +21,7 @@ const OrderForm = (props) => {
     var discount = 0
     
     const [submitConfirm, setSubmitConfirm] = useState(false)
+    const [submissionProcessing, setSubmissionProcessing] = useState(false)
 
     const submit = async (order) => {
         console.log(JSON.stringify(order))
@@ -28,6 +29,13 @@ const OrderForm = (props) => {
         const { error } = await supabase.from('orders').insert(order)
 
         console.log(error)
+        if(error != null){
+            sendErrorEmail(order)
+            submit(order)
+        }else{
+            setSubmitConfirm(true)
+            setSubmissionProcessing(false)
+        }
     }
 
     const useDiscount = (code) => {
@@ -41,7 +49,18 @@ const OrderForm = (props) => {
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
-                console.log('FAILED...', error);
+                console.log('FAILED... Trying again', error);
+                sendEmail(data)
+            });
+    }
+
+    const sendErrorEmail = (errMsg) => {
+        emailjs.send('service_s4jhuc5', 'template_ah5l39i', errMsg, 'ITws7WsBCTsX0bKrH')
+            .then(function (response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function (error) {
+                console.log('FAILED... Trying again', error);
+                sendErrorEmail(errMsg)
             });
     }
 
@@ -73,7 +92,8 @@ const OrderForm = (props) => {
 
                     submit(order)
 
-                    { setSubmitConfirm(true) }
+                    // { setSubmitConfirm(true) },
+                    { setSubmissionProcessing(true) }
                     { sendEmail(order) }
                 })} >
                 {/* Delivery Information */}
@@ -146,8 +166,8 @@ const OrderForm = (props) => {
                 </div>
 
                 <input type="submit" />
+                {submissionProcessing && <div className='f3 processing order-form-txt'>Processing you're order...</div>}
                 {submitConfirm && <div className='f3 confirmation order-form-txt'>Your order has been submitted! Please check your email for your receipt.</div>}
-
             </form>
 
         </div>

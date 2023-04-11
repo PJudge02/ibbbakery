@@ -31,7 +31,7 @@ const OrderForm = (props) => {
 
         console.log(error)
         if(error != null){
-            sendErrorEmail(order)
+            // sendErrorEmail(order)
             setSubmissionError(true)
             setSubmissionProcessing(false)
             setSubmitConfirm(false)
@@ -98,7 +98,7 @@ const OrderForm = (props) => {
 
                     // { setSubmitConfirm(true) },
                     { setSubmissionProcessing(true) }
-                    { sendEmail(order) }
+                    // { sendEmail(order) }
                 })} >
                 {/* Delivery Information */}
                 <div className='subsection-form deliveryInfo'>
@@ -170,7 +170,7 @@ const OrderForm = (props) => {
                 </div>
 
                 <input type="submit" />
-                {submissionError && <div className='f3 processing order-form-txt'>There was an error in handling your order, please refresh & try again.</div>}
+                {submissionError && <div className='f3 error order-form-txt'>There was an error in handling your order, please refresh & try again.</div>}
                 {submissionProcessing && <div className='f3 processing order-form-txt'>Processing you're order...</div>}
                 {submitConfirm && <div className='f3 confirmation order-form-txt'>Your order has been submitted! Please check your email for your receipt.</div>}
             </form>

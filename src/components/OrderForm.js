@@ -8,7 +8,7 @@ import emailjs from 'emailjs-com';
 // import { Routes, Route, Navigate } from 'react-router-dom'
 
 const OrderForm = (props) => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const [plainQuantity, setPlainQuanity] = useState(0);
     const [chocolateWalnutQuantity, setChocolateWalnutQuantity] = useState(0)
     const [special1Quantity, setSpecial1Quantity] = useState(0)
@@ -22,6 +22,7 @@ const OrderForm = (props) => {
     
     const [submitConfirm, setSubmitConfirm] = useState(false)
     const [submissionProcessing, setSubmissionProcessing] = useState(false)
+    const [submissionError, setSubmissionError] = useState(false)
 
     const submit = async (order) => {
         console.log(JSON.stringify(order))
@@ -31,15 +32,18 @@ const OrderForm = (props) => {
         console.log(error)
         if(error != null){
             sendErrorEmail(order)
-            submit(order)
+            setSubmissionError(true)
+            setSubmissionProcessing(false)
+            setSubmitConfirm(false)
         }else{
             setSubmitConfirm(true)
             setSubmissionProcessing(false)
+            setSubmissionError(false)
         }
     }
 
     const useDiscount = (code) => {
-        if (code == 'telegram1') {
+        if (code === 'telegram1') {
             // discount = parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity);
         }
     }
@@ -159,13 +163,14 @@ const OrderForm = (props) => {
                     <div className='f2 subtitle-form order-form-txt'>Payment Information</div>
                     <div className='f3 order-form-txt'>Discount Code</div>
                     <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => setDiscountCode(e.target.value)} />
-                    {useDiscount(discountCode)}
+                    {useDiscount(discountCode)} 
                     <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice + 
                         chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price
                         + special2Quantity * special2Price - discount))}</div>
                 </div>
 
                 <input type="submit" />
+                {submissionError && <div className='f3 processing order-form-txt'>There was an error in handling your order, please refresh & try again.</div>}
                 {submissionProcessing && <div className='f3 processing order-form-txt'>Processing you're order...</div>}
                 {submitConfirm && <div className='f3 confirmation order-form-txt'>Your order has been submitted! Please check your email for your receipt.</div>}
             </form>

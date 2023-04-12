@@ -14,10 +14,10 @@ const OrderForm = (props) => {
     const [special1Quantity, setSpecial1Quantity] = useState(0)
     const [special2Quantity, setSpecial2Quantity] = useState(0) 
     const [discountCode, setDiscountCode] = useState('empty')
-    const plainPrice = 4.00;
-    const cwPrice = 5.00;
-    const special1Price = 5.00;
-    const special2Price = 5.00;
+    const plainPrice = 3.00;
+    const cwPrice = 4.00;
+    const special1Price = 4.00;
+    const special2Price = 4.00;
     var discount = 0
     
     const [submitConfirm, setSubmitConfirm] = useState(false)
@@ -134,10 +134,10 @@ const OrderForm = (props) => {
                 {/* Menu */}
                 <hr className='order-form-line' />
                 <div className='subsection-form'>
-                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$5.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
-                    {<OrderCard title={'Salted Carmel'} breadType={'special2'} description={'Salted Carmel BB'} price={'$5.00'} setSpecial2Quantity={(e) => setSpecial2Quantity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$5.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
+                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$3.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$4.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
+                    {<OrderCard title={'Salted Carmel'} breadType={'special2'} description={'Salted Carmel BB'} price={'$4.00'} setSpecial2Quantity={(e) => setSpecial2Quantity(e.target.value)} />}
+                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$4.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
                 </div>
 
                 <hr className='order-form-line' />

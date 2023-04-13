@@ -39,6 +39,7 @@ const OrderForm = (props) => {
             setSubmitConfirm(true)
             setSubmissionProcessing(false)
             setSubmissionError(false)
+            sendEmail(order)
         }
     }
 
@@ -97,7 +98,7 @@ const OrderForm = (props) => {
                     submit(order)
 
                     { setSubmissionProcessing(true) }
-                    { sendEmail(order) }
+                    // { sendEmail(order) }
                 })} >
                 {/* Delivery Information */}
                 <div className='subsection-form deliveryInfo'>

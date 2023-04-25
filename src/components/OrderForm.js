@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './OrderForm.css'
 import OrderCard from './OrderCard'
 import { useForm } from 'react-hook-form'
@@ -12,14 +12,18 @@ const OrderForm = (props) => {
     const [plainQuantity, setPlainQuanity] = useState(0);
     const [chocolateWalnutQuantity, setChocolateWalnutQuantity] = useState(0)
     const [special1Quantity, setSpecial1Quantity] = useState(0)
-    const [special2Quantity, setSpecial2Quantity] = useState(0) 
+    const [special2Quantity, setSpecial2Quantity] = useState(0)
     const [discountCode, setDiscountCode] = useState('empty')
-    const plainPrice = 4.00;
-    const cwPrice = 5.00;
-    const special1Price = 5.00;
-    const special2Price = 5.00;
-    var discount = 0
-    
+    const plainPrice = 3.00;
+    const cwPrice = 4.00;
+    const special1Price = 4.00;
+    const special2Price = 4.00;
+    // var discount = 0
+
+    //for discounts
+    const [discount, setDiscount] = useState(0.0)
+    const [count, setCount] = useState([0, 0, 0, 0])
+
     const [submitConfirm, setSubmitConfirm] = useState(false)
     const [submissionProcessing, setSubmissionProcessing] = useState(false)
     const [submissionError, setSubmissionError] = useState(false)
@@ -30,18 +34,37 @@ const OrderForm = (props) => {
         const { error } = await supabase.from('orders').insert(order)
 
         console.log(error)
-        if(error != null){
+        if (error != null) {
             sendErrorEmail(order)
             setSubmissionError(true)
             setSubmissionProcessing(false)
             setSubmitConfirm(false)
-        }else{
+        } else {
             setSubmitConfirm(true)
             setSubmissionProcessing(false)
             setSubmissionError(false)
             sendEmail(order)
         }
     }
+
+    useEffect(() => {
+        var localDiscount = 0.0
+        setDiscount(0.0)
+        var counter = 0
+        for(let j = 0; j < count.length; j++){
+            for(let k = 0; k < count[j]; k++){
+                counter = counter + 1
+                if(counter % 3 === 0){
+                    j === 0 ? localDiscount = localDiscount + plainPrice : localDiscount = localDiscount + cwPrice
+                }
+            }
+        }
+        setDiscount(localDiscount)
+    }, [count])
+
+    useEffect(() => {
+        console.log(`DISCOUNT: ${discount}`)
+    }, [discount])
 
     const useDiscount = (code) => {
         if (code === 'telegram1') {
@@ -78,7 +101,7 @@ const OrderForm = (props) => {
                     // http request
 
                     const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price + special2Quantity * special2Price - discount
-                    
+
                     const order = {
                         id: Math.ceil(Date.now() / 1000 + data.roomNumber),
                         qty_plain: plainQuantity,
@@ -135,10 +158,30 @@ const OrderForm = (props) => {
                 {/* Menu */}
                 <hr className='order-form-line' />
                 <div className='subsection-form'>
-                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => setPlainQuanity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$5.00'} setSpecial1Quantity={(e) => setSpecial1Quantity(e.target.value)} />}
-                    {<OrderCard title={'Salted Carmel'} breadType={'special2'} description={'Salted Carmel BB'} price={'$5.00'} setSpecial2Quantity={(e) => setSpecial2Quantity(e.target.value)} />}
-                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'$5.00'} setChocolateWalnutQuantity={(e) => setChocolateWalnutQuantity(e.target.value)} />}
+                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$3.00'} setPlainQuanity={(e) => {
+                        setPlainQuanity(e.target.value)
+                        const tempC = [...count]
+                        tempC[0] = parseInt(e.target.value)
+                        setCount(tempC)
+                    }} />}
+                    {<OrderCard title={'Chocolate'} breadType={'special1'} description={'Chocolate BB'} price={'$4.00'} setSpecial1Quantity={(e) => {
+                        setSpecial1Quantity(e.target.value)
+                        const tempC = [...count]
+                        tempC[1] = parseInt(e.target.value)
+                        setCount(tempC)
+                    }} />}
+                    {<OrderCard title={'Salted Carmel'} breadType={'special2'} description={'Salted Carmel BB'} price={'$4.00'} setSpecial2Quantity={(e) => {
+                        setSpecial2Quantity(e.target.value)
+                        const tempC = [...count]
+                        tempC[2] = parseInt(e.target.value)
+                        setCount(tempC)
+                    }} />}
+                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'4.00'} setChocolateWalnutQuantity={(e) => {
+                        setChocolateWalnutQuantity(e.target.value)
+                        const tempC = [...count]
+                        tempC[3] = parseInt(e.target.value)
+                        setCount(tempC)
+                    }} />}
                 </div>
 
                 <hr className='order-form-line' />
@@ -152,7 +195,7 @@ const OrderForm = (props) => {
                     <input {...register('name', { required: '*The field above is required' })} type='text' placeholder='First & Last Name' />
                     <p className='error'>{errors.name?.message}</p>
                     <div className='photo-q-fit'>
-                        <input {...register('takePhoto')} className='photo-q-box' type='checkbox'/>
+                        <input {...register('takePhoto')} className='photo-q-box' type='checkbox' />
                         <div id='photo-q-text'>Can we get a photo with you upon delivery?</div>
                     </div>
                 </div>
@@ -163,8 +206,8 @@ const OrderForm = (props) => {
                     <div className='f2 subtitle-form order-form-txt'>Payment Information</div>
                     <div className='f3 order-form-txt'>Discount Code</div>
                     <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => setDiscountCode(e.target.value)} />
-                    {useDiscount(discountCode)} 
-                    <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice + 
+                    {useDiscount(discountCode)}
+                    <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice +
                         chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price
                         + special2Quantity * special2Price - discount))}</div>
                 </div>

@@ -21,6 +21,7 @@ const OrderForm = (props) => {
     // var discount = 0
 
     //for discounts
+    const [freeLoaves, setFreeLoaves] = useState(0.0)
     const [discount, setDiscount] = useState(0.0)
     const [count, setCount] = useState([0, 0, 0, 0])
 
@@ -49,26 +50,37 @@ const OrderForm = (props) => {
 
     useEffect(() => {
         var localDiscount = 0.0
-        setDiscount(0.0)
+        setFreeLoaves(0.0)
         var counter = 0
         for(let j = 0; j < count.length; j++){
             for(let k = 0; k < count[j]; k++){
                 counter = counter + 1
                 if(counter % 3 === 0){
+                    // console.log(`localdiscount: ${localDiscount}`)
                     j === 0 ? localDiscount = localDiscount + plainPrice : localDiscount = localDiscount + cwPrice
+                    // console.log(`localdiscount: ${localDiscount}`)
                 }
             }
         }
-        setDiscount(localDiscount)
+        setFreeLoaves(localDiscount)
+        implementDiscount(discountCode)
     }, [count])
 
     useEffect(() => {
-        console.log(`DISCOUNT: ${discount}`)
-    }, [discount])
+        implementDiscount(discountCode)
+    }, [freeLoaves])
 
-    const useDiscount = (code) => {
+    function implementDiscount(code){
+        setDiscountCode(code)
         if (code === 'telegram1') {
-            setDiscount(parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity));
+            // console.log(`free laoves: ${freeLoaves}`)
+
+            setDiscount(parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity) + parseInt(special2Quantity) - parseInt(freeLoaves / 3));
+            
+            // console.log(plainQuantity + ' ' + chocolateWalnutQuantity + ' ' + special1Quantity + ' ' + special2Quantity)
+            // console.log(parseInt(freeLoaves/3))
+        }else{
+            setDiscount(0.0)
         }
     }
 
@@ -100,7 +112,7 @@ const OrderForm = (props) => {
                 onSubmit={handleSubmit((data) => {
                     // http request
 
-                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price + special2Quantity * special2Price - discount
+                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price + special2Quantity * special2Price - discount - freeLoaves
 
                     const order = {
                         id: Math.ceil(Date.now() / 1000 + data.roomNumber),
@@ -205,11 +217,13 @@ const OrderForm = (props) => {
                 <div className='subsection-form'>
                     <div className='f2 subtitle-form order-form-txt'>Payment Information</div>
                     <div className='f3 order-form-txt'>Discount Code</div>
-                    <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => setDiscountCode(e.target.value)} />
-                    {useDiscount(discountCode)}
+                    <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => implementDiscount(e.target.value)} />
+                    {/* {useDiscount(discountCode)} */}
                     <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice +
                         chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price
-                        + special2Quantity * special2Price - discount))}</div>
+                        + special2Quantity * special2Price - discount - freeLoaves))}</div>
+                    {/* {console.log(`discount: ${discount}`)}
+                    {console.log(`freeloaves: ${freeLoaves}`)} */}
                 </div>
 
                 <input type="submit" />

@@ -68,7 +68,7 @@ const OrderForm = (props) => {
 
     const useDiscount = (code) => {
         if (code === 'telegram1') {
-            // discount = parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity);
+            discount = parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity);
         }
     }
 

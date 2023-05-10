@@ -49,7 +49,7 @@ function quantitySelector(breadType, register, setPlainQuanity, setChocolateWaln
     }
 
 }
-
+//Order card
 const OrderCard = (props) => {
     const { title, breadType, description, price, setPlainQuanity, setChocolateWalnutQuantity, setSpecial1Quantity, setSpecial2Quantity } = props
     const { register } = useForm()

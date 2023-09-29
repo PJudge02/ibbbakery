@@ -182,13 +182,7 @@ const OrderForm = (props) => {
                         tempC[1] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Salted Carmel'} breadType={'special2'} description={'Salted Carmel BB'} price={'$5.00'} setSpecial2Quantity={(e) => {
-                        setSpecial2Quantity(e.target.value)
-                        const tempC = [...count]
-                        tempC[2] = parseInt(e.target.value)
-                        setCount(tempC)
-                    }} />}
-                    {<OrderCard title={'Chocolate Walnut'} breadType={'chocolate walnut'} description={'Chocolate Walnut BB'} price={'5.00'} setChocolateWalnutQuantity={(e) => {
+                    {<OrderCard title={'Apple Pie'} breadType={'plain'} description={'Plain BB'} price={'5.00'} setChocolateWalnutQuantity={(e) => {
                         setChocolateWalnutQuantity(e.target.value)
                         const tempC = [...count]
                         tempC[3] = parseInt(e.target.value)

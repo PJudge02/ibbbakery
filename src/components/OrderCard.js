@@ -5,6 +5,8 @@ import './OrderCard.css'
 
 function loadImg(breadType, descriptiom) {
     switch (breadType) {
+        case 'apple pie':
+            return <img className='br4 img-card' src={require('../images/plainBB.jpg')} alt={descriptiom} />
         case 'plain':
             return <img className='br4 img-card' src={require('../images/plainBB.jpg')} alt={descriptiom} />
         case 'chocolate walnut':
@@ -13,11 +15,20 @@ function loadImg(breadType, descriptiom) {
             return <img className='br4 img-card' src={require('../images/chocolateBB.jpg')} alt={descriptiom} />
         case 'special2':
             return <img className='br4 img-card' src={require('../images/saltedCarmelBB.jpg')} alt={descriptiom} />
+        case 'muffin':
+            return <img className='br4 img-card' src={require('../images/muffin.jpg')} alt={descriptiom} />
     }
 }
 
 function quantitySelector(breadType, register, setPlainQuanity, setChocolateWalnutQuantity, setSpecial1Quantity, setSpecial2Quantity) {
     switch (breadType) {
+        case 'apple pie':
+            return <select {...register('numLoaves', { required: true })} onChange={(e) => setPlainQuanity(e)}>
+                <option value='0'>0</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+            </select>
         case 'plain':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setPlainQuanity(e)}>
                 <option value='0'>0</option>
@@ -46,6 +57,13 @@ function quantitySelector(breadType, register, setPlainQuanity, setChocolateWaln
                 <option value='2'>2</option>
                 <option value='3'>3</option>
             </select>
+        case 'muffin':
+            return <select {...register('numLoaves', { required: true })} onChange={(e) => setSpecial2Quantity(e)}>
+                <option value='0'>0</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+            </select>
     }
 
 }
@@ -55,7 +73,7 @@ const OrderCard = (props) => {
     const { register } = useForm()
 
     return (
-        <>{breadType == 'special2' ? (<div className='dib br3 pa3 ma2 bw2 tc w-75-l w-75-m card order-form-txt special'>
+        <>{breadType == 'apple pie' ? (<div className='dib br3 pa3 ma2 bw2 tc w-75-l w-75-m card order-form-txt special'>
 
             <h1 id="order-card-special"><em><u>Seasonal Special</u></em></h1>
             {loadImg(breadType, description)}

@@ -133,6 +133,20 @@ const OrderForm = (props) => {
             });
     }
 
+    const updateTable = async(e) => {
+        const {d, err} = await supabase
+            .from('bb_inventory')
+            .update({muffin: supply[0].muffin - muffinQuantity,
+                apple_pie: supply[0].apple_pie - applePieQuantity,
+                plain: supply[0].plain - plainQuantity,
+                choc_chip: supply[0].choc_chip - special1Quantity})
+            .eq('id', 8675309)
+
+        if(err){
+            console.log(err)
+        }
+    }
+
     return (
         <div className='bg-black dib br4 pa3 bw2 shadow-5 w-75 tc'>
             <div className='f1 order-form-txt'>Order Form</div>
@@ -152,6 +166,8 @@ const OrderForm = (props) => {
                         qty_cw: chocolateWalnutQuantity,
                         qty_special1: special1Quantity,
                         qty_special2: special2Quantity,
+                        apple_pie: applePieQuantity,
+                        muffin: muffinQuantity,
                         delivery_time: data.time,
                         building_address: data.building,
                         room_num: data.roomNumber,
@@ -163,9 +179,9 @@ const OrderForm = (props) => {
                     }
 
                     submit(order)
+                    updateTable()
 
                     { setSubmissionProcessing(true) }
-                    // { sendEmail(order) }
                 })} >
                 {/* Delivery Information */}
                 <div className='subsection-form deliveryInfo'>
@@ -173,14 +189,15 @@ const OrderForm = (props) => {
                     <select {...register('building', { required: '*The field above is required' })} defaultValue={'Select'} id='building'>
                         <option value='Select' disabled> -- Select Building Location -- </option>
                         <option value='Alumni'>Alumni</option>
-                        <option value='Harker'>Harker</option>
+                        <option value='Harker Front Entrance'>Harker Front Entrance</option>
                         <option value='Hicks'>Hicks</option>
                         <option value='Hopeman'>Hopeman</option>
                         <option value='Ketler'>Ketler</option>
                         <option value='Lincoln'>Lincoln</option>
-                        <option value='MAP'>MAP</option>
-                        <option value='MEP'>MEP</option>
+                        <option value='MAP Lobby'>MAP Lobby</option>
+                        <option value='MEP PLC Entrance'>MEP PLC Entrance</option>
                         <option value='Memorial'>Memorial</option>
+                        <option value='Library Lobby'>Library Lobby</option>
                     </select>
                     <p className='error'>{errors.building?.message}</p>
                     <select {...register('time', { required: '*The field above is required' })} defaultValue={'Select'} id='building'>
@@ -202,25 +219,25 @@ const OrderForm = (props) => {
                 {/* Menu */}
                 <hr className='order-form-line' />
                 <div className='subsection-form'>
-                    {<OrderCard title={'Plain'} supply={supply ? supply[0].plain : 1} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => {
+                    {<OrderCard title={'Plain'} supply={supply ? supply[0].plain : 0} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => {
                         setPlainQuanity(e.target.value)
                         const tempC = [...count]
                         tempC[0] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Chocolate Chip'} supply={supply ? supply[0].choc_chip : 1} breadType={'plain'} description={'Chocolate Chip BB'} price={'$5.00'} setSpecial1Quantity={(e) => {
+                    {<OrderCard title={'Chocolate Chip'} supply={supply ? supply[0].choc_chip : 0} breadType={'plain'} description={'Chocolate Chip BB'} price={'$5.00'} setSpecial1Quantity={(e) => {
                         setSpecial1Quantity(e.target.value)
                         const tempC = [...count]
                         tempC[1] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Muffin'} supply={supply ? supply[0].muffin : 1} breadType={'muffin'} description={'Muffin BB'} price={'$3.00'} setMuffinQuantity={(e) => {
+                    {<OrderCard title={'Muffin'} supply={supply ? supply[0].muffin : 0} breadType={'muffin'} description={'Muffin BB'} price={'$3.00'} setMuffinQuantity={(e) => {
                         setMuffinQuantity(e.target.value)
                         const tempC = [...count]
                         tempC[1] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Apple Pie'} supply={supply ? supply[0].apple_pie : 1} breadType={'apple pie'} description={'Plain BB'} price={'5.00'} setApplePieQuantity={(e) => {
+                    {<OrderCard title={'Apple Pie'} supply={supply ? supply[0].apple_pie : 0} breadType={'apple pie'} description={'Plain BB'} price={'5.00'} setApplePieQuantity={(e) => {
                         setApplePieQuantity(e.target.value)
                         const tempC = [...count]
                         tempC[3] = parseInt(e.target.value)

@@ -19,12 +19,12 @@ const OrderForm = (props) => {
     const [muffinQuantity, setMuffinQuantity] = useState(0)
     const [applePieQuantity, setApplePieQuantity] = useState(0)
     const [discountCode, setDiscountCode] = useState('empty')
-    const plainPrice = 4.00;
+    const plainPrice = 5.50;
     const cwPrice = 5.00;
     const special1Price = 5.00;
     const special2Price = 5.00;
-    const muffinPrice = 3.00;
-    const applePiePrice = 5.00;
+    const muffinPrice = 1.50;
+    const applePiePrice = 6.50;
     // var discount = 0
 
     //for discounts
@@ -231,7 +231,7 @@ const OrderForm = (props) => {
                         tempC[1] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Muffin'} supply={supply ? supply[0].muffin : 0} breadType={'muffin'} description={'Muffin BB'} price={'$3.00'} setMuffinQuantity={(e) => {
+                    {<OrderCard title={'Muffin'} supply={supply ? supply[0].muffin : 0} breadType={'muffin'} description={'Muffin BB'} price={'$1.50'} setMuffinQuantity={(e) => {
                         setMuffinQuantity(e.target.value)
                         const tempC = [...count]
                         tempC[1] = parseInt(e.target.value)

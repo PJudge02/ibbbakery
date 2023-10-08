@@ -8,16 +8,23 @@ import emailjs from 'emailjs-com';
 // import { Routes, Route, Navigate } from 'react-router-dom'
 
 const OrderForm = (props) => {
+    const [fetchError, setFetchError] = useState(null)
+    const [supply, setSupply] = useState(null)
+
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [plainQuantity, setPlainQuanity] = useState(0);
     const [chocolateWalnutQuantity, setChocolateWalnutQuantity] = useState(0)
     const [special1Quantity, setSpecial1Quantity] = useState(0)
     const [special2Quantity, setSpecial2Quantity] = useState(0)
+    const [muffinQuantity, setMuffinQuantity] = useState(0)
+    const [applePieQuantity, setApplePieQuantity] = useState(0)
     const [discountCode, setDiscountCode] = useState('empty')
     const plainPrice = 4.00;
     const cwPrice = 5.00;
     const special1Price = 5.00;
     const special2Price = 5.00;
+    const muffinPrice = 3.00;
+    const applePiePrice = 5.00;
     // var discount = 0
 
     //for discounts
@@ -28,6 +35,28 @@ const OrderForm = (props) => {
     const [submitConfirm, setSubmitConfirm] = useState(false)
     const [submissionProcessing, setSubmissionProcessing] = useState(false)
     const [submissionError, setSubmissionError] = useState(false)
+
+    useEffect(() => {
+        const fetchSupply = async () => {
+            const {data, error} = await supabase
+                .from('bb_inventory')
+                .select()
+            
+                if(error){
+                    setFetchError('Could not fetch data')
+                    setSupply(null)
+                    console.log(error)
+                }
+                if(data){
+                    setSupply(data)
+                    setFetchError(null)
+                    console.log(data)
+                    console.log(data[0])
+                    console.log(data[0].apple_pie)
+                }
+        }
+        fetchSupply()
+    }, [])
 
     const submit = async (order) => {
         console.log(JSON.stringify(order))
@@ -62,7 +91,7 @@ const OrderForm = (props) => {
                 }
             }
         }
-        setFreeLoaves(localDiscount)
+        // setFreeLoaves(localDiscount)
         implementDiscount(discountCode)
     }, [count])
 
@@ -75,7 +104,7 @@ const OrderForm = (props) => {
         if (code === 'telegram1') {
             // console.log(`free laoves: ${freeLoaves}`)
 
-            setDiscount(parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity) + parseInt(special2Quantity) - parseInt(freeLoaves / 3));
+            // setDiscount(parseInt(plainQuantity) + parseInt(chocolateWalnutQuantity) + parseInt(special1Quantity) + parseInt(special2Quantity) - parseInt(freeLoaves / 3));
             
             // console.log(plainQuantity + ' ' + chocolateWalnutQuantity + ' ' + special1Quantity + ' ' + special2Quantity)
             // console.log(parseInt(freeLoaves/3))
@@ -112,7 +141,10 @@ const OrderForm = (props) => {
                 onSubmit={handleSubmit((data) => {
                     // http request
 
-                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price + special2Quantity * special2Price - discount - freeLoaves
+                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price + special2Quantity * special2Price + muffinQuantity * muffinPrice + applePieQuantity * applePiePrice - discount - freeLoaves 
+                    console.log('total cost')
+                    console.log(totalCost)
+
 
                     const order = {
                         id: Math.ceil(Date.now() / 1000 + data.roomNumber),
@@ -170,26 +202,26 @@ const OrderForm = (props) => {
                 {/* Menu */}
                 <hr className='order-form-line' />
                 <div className='subsection-form'>
-                    {<OrderCard title={'Plain'} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => {
+                    {<OrderCard title={'Plain'} supply={supply ? supply[0].plain : 1} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => {
                         setPlainQuanity(e.target.value)
                         const tempC = [...count]
                         tempC[0] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Chocolate Chip'} breadType={'plain'} description={'Chocolate Chip BB'} price={'$5.00'} setSpecial1Quantity={(e) => {
+                    {<OrderCard title={'Chocolate Chip'} supply={supply ? supply[0].choc_chip : 1} breadType={'plain'} description={'Chocolate Chip BB'} price={'$5.00'} setSpecial1Quantity={(e) => {
                         setSpecial1Quantity(e.target.value)
                         const tempC = [...count]
                         tempC[1] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Muffin'} breadType={'muffin'} description={'Muffin BB'} price={'$5.00'} setSpecial1Quantity={(e) => {
-                        setSpecial1Quantity(e.target.value)
+                    {<OrderCard title={'Muffin'} supply={supply ? supply[0].muffin : 1} breadType={'muffin'} description={'Muffin BB'} price={'$3.00'} setMuffinQuantity={(e) => {
+                        setMuffinQuantity(e.target.value)
                         const tempC = [...count]
                         tempC[1] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Apple Pie'} breadType={'apple pie'} description={'Plain BB'} price={'5.00'} setChocolateWalnutQuantity={(e) => {
-                        setChocolateWalnutQuantity(e.target.value)
+                    {<OrderCard title={'Apple Pie'} supply={supply ? supply[0].apple_pie : 1} breadType={'apple pie'} description={'Plain BB'} price={'5.00'} setApplePieQuantity={(e) => {
+                        setApplePieQuantity(e.target.value)
                         const tempC = [...count]
                         tempC[3] = parseInt(e.target.value)
                         setCount(tempC)
@@ -221,6 +253,7 @@ const OrderForm = (props) => {
                     {/* {useDiscount(discountCode)} */}
                     <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice +
                         chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price
+                        + muffinQuantity * muffinPrice + applePieQuantity * applePiePrice
                         + special2Quantity * special2Price - discount - freeLoaves))}</div>
                     {/* {console.log(`disloaves: ${freeLoaves}`)} */}
                 </div>

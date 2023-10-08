@@ -115,6 +115,18 @@ input[type="submit"]:active {
     /* background-color: #d49506 !important; */
 }
 
+/* Supply */
+.supplyLow {
+    /* border: 2px solid #9f0000; */
+    
+    color: #9f0000;
+    /* background-color: #d49506 !important; */
+}
+
+.supplyHigh {
+    color: green;
+}
+
 #order-card-special {
     font-size: calc(1.75rem + 1.5vw);
     color:#d49506;

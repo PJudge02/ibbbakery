@@ -219,7 +219,7 @@ const OrderForm = (props) => {
                 {/* Menu */}
                 <hr className='order-form-line' />
                 <div className='subsection-form'>
-                    {<OrderCard title={'Plain'} supply={supply ? supply[0].plain : 0} breadType={'plain'} description={'Plan BB'} price={'$4.00'} setPlainQuanity={(e) => {
+                    {<OrderCard title={'Plain'} supply={supply ? supply[0].plain : 0} breadType={'plain'} description={'Plan BB'} price={'$5.50'} setPlainQuanity={(e) => {
                         setPlainQuanity(e.target.value)
                         const tempC = [...count]
                         tempC[0] = parseInt(e.target.value)
@@ -237,7 +237,7 @@ const OrderForm = (props) => {
                         tempC[1] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Apple Pie'} supply={supply ? supply[0].apple_pie : 0} breadType={'apple pie'} description={'Plain BB'} price={'5.00'} setApplePieQuantity={(e) => {
+                    {<OrderCard title={'Apple Pie'} supply={supply ? supply[0].apple_pie : 0} breadType={'apple pie'} description={'Plain BB'} price={'6.50'} setApplePieQuantity={(e) => {
                         setApplePieQuantity(e.target.value)
                         const tempC = [...count]
                         tempC[3] = parseInt(e.target.value)

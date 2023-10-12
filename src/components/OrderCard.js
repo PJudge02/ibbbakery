@@ -28,6 +28,9 @@ function quantitySelector3(breadType, register, setPlainQuanity, setChocolateWal
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
+                <option value='-3'>3 Frozen</option>
             </select>
         case 'plain':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setPlainQuanity(e)}>
@@ -35,6 +38,9 @@ function quantitySelector3(breadType, register, setPlainQuanity, setChocolateWal
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
+                <option value='-3'>3 Frozen</option>
             </select>
         case 'chocolate walnut':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setChocolateWalnutQuantity(e)}>
@@ -42,6 +48,9 @@ function quantitySelector3(breadType, register, setPlainQuanity, setChocolateWal
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
+                <option value='-3'>3 Frozen</option>
             </select>
         case 'special1':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setSpecial1Quantity(e)}>
@@ -49,6 +58,9 @@ function quantitySelector3(breadType, register, setPlainQuanity, setChocolateWal
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
+                <option value='-3'>3 Frozen</option>
             </select>
         case 'special2':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setSpecial2Quantity(e)}>
@@ -56,6 +68,9 @@ function quantitySelector3(breadType, register, setPlainQuanity, setChocolateWal
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
+                <option value='-3'>3 Frozen</option>
             </select>
         case 'muffin':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setMuffinQuantity(e)}>
@@ -63,6 +78,9 @@ function quantitySelector3(breadType, register, setPlainQuanity, setChocolateWal
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
+                <option value='-3'>3 Frozen</option>
             </select>
     }
 
@@ -75,30 +93,40 @@ function quantitySelector2(breadType, register, setPlainQuanity, setChocolateWal
                 <option value='0'>0</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
             </select>
         case 'plain':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setPlainQuanity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
             </select>
         case 'chocolate walnut':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setChocolateWalnutQuantity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
             </select>
         case 'special1':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setSpecial1Quantity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
             </select>
         case 'special2':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setSpecial2Quantity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
+                <option value='-1'>1 Frozen</option>
+                <option value='-2'>2 Frozen</option>
             </select>
         case 'muffin':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setMuffinQuantity(e)}>
@@ -116,31 +144,37 @@ function quantitySelector1(breadType, register, setPlainQuanity, setChocolateWal
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setApplePieQuantity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
+                <option value='-1'>1 Frozen</option>
             </select>
         case 'plain':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setPlainQuanity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
+                <option value='-1'>1 Frozen</option>
             </select>
         case 'chocolate walnut':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setChocolateWalnutQuantity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
+                <option value='-1'>1 Frozen</option>
             </select>
         case 'special1':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setSpecial1Quantity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
+                <option value='-1'>1 Frozen</option>
             </select>
         case 'special2':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setSpecial2Quantity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
+                <option value='-1'>1 Frozen</option>
             </select>
         case 'muffin':
             return <select {...register('numLoaves', { required: true })} onChange={(e) => setMuffinQuantity(e)}>
                 <option value='0'>0</option>
                 <option value='1'>1</option>
+                <option value='-1'>1 Frozen</option>
             </select>
     }
 

@@ -155,7 +155,7 @@ const OrderForm = (props) => {
                 onSubmit={handleSubmit((data) => {
                     // http request
 
-                    const totalCost = plainQuantity * plainPrice + chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price + special2Quantity * special2Price + muffinQuantity * muffinPrice + applePieQuantity * applePiePrice - discount - freeLoaves 
+                    const totalCost = Math.abs(plainQuantity * plainPrice) + Math.abs(chocolateWalnutQuantity * cwPrice) + Math.abs(special1Quantity * special1Price) + Math.abs(special2Quantity * special2Price) + Math.abs(muffinQuantity * muffinPrice) + Math.abs(applePieQuantity * applePiePrice) - discount - freeLoaves 
                     console.log('total cost')
                     console.log(totalCost)
 
@@ -268,10 +268,10 @@ const OrderForm = (props) => {
                     <div className='f3 order-form-txt'>Discount Code</div>
                     <input {...register('discount')} type='text' placeholder='Enter Discount Code Here' onChange={(e) => implementDiscount(e.target.value)} />
                     {/* {useDiscount(discountCode)} */}
-                    <div className='f3 order-form-txt'>Total = ${Math.round((plainQuantity * plainPrice +
-                        chocolateWalnutQuantity * cwPrice + special1Quantity * special1Price
-                        + muffinQuantity * muffinPrice + applePieQuantity * applePiePrice
-                        + special2Quantity * special2Price - discount - freeLoaves))}</div>
+                    <div className='f3 order-form-txt'>Total = ${Math.round((Math.abs(plainQuantity * plainPrice) +
+                        Math.abs(chocolateWalnutQuantity * cwPrice) + Math.abs(special1Quantity * special1Price)
+                        + Math.abs(muffinQuantity * muffinPrice) + Math.abs(applePieQuantity * applePiePrice)
+                        + Math.abs(special2Quantity * special2Price) - discount - freeLoaves))}</div>
                     {/* {console.log(`disloaves: ${freeLoaves}`)} */}
                 </div>
 

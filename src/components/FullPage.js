@@ -88,12 +88,12 @@ const FullPage = (props) => {
                         <i className="fa-brands fa-instagram fa-stack-1x fa-buttom-page-icons"></i>
                     </span>
                 </a>
-                <a href='https://t.me/ibbbakry'>
+                {/* <a href='https://t.me/ibbbakry'>
                     <span className='fa-stack fa-2x grow-large'>
                         <i className="fa-solid fa-circle fa-stack-2x" id='telegram-fa-background'></i>
                         <i className="fa-brands fa-telegram fa-stack-1x fa-2x fa-buttom-page-icons" id='telegram-fa'></i>
                     </span>
-                </a>
+                </a> */}
                 <a href=''>
                     <span className='fa-stack fa-2x grow-large'>
                         <i className="fa-solid fa-circle fa-stack-2x" id='fa-circle-btn4'></i>

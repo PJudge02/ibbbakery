@@ -19,12 +19,12 @@ const OrderForm = (props) => {
     const [muffinQuantity, setMuffinQuantity] = useState(0)
     const [applePieQuantity, setApplePieQuantity] = useState(0)
     const [discountCode, setDiscountCode] = useState('empty')
-    const plainPrice = 5.50;
-    const cwPrice = 5.00;
-    const special1Price = 5.00;
-    const special2Price = 5.00;
+    const plainPrice = 4.50;
+    const cwPrice = 4.00;
+    const special1Price = 4.00;
+    const special2Price = 4.00;
     const muffinPrice = 1.50;
-    const applePiePrice = 6.50;
+    const applePiePrice = 5.50;
     // var discount = 0
 
     //for discounts
@@ -219,13 +219,13 @@ const OrderForm = (props) => {
                 {/* Menu */}
                 <hr className='order-form-line' />
                 <div className='subsection-form'>
-                    {<OrderCard title={'Plain'} supply={supply ? supply[0].plain : 0} breadType={'plain'} description={'Plan BB'} price={'$5.50'} setPlainQuanity={(e) => {
+                    {<OrderCard title={'Plain'} supply={supply ? supply[0].plain : 0} breadType={'plain'} description={'Plan BB'} price={'$4.50'} setPlainQuanity={(e) => {
                         setPlainQuanity(e.target.value)
                         const tempC = [...count]
                         tempC[0] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Chocolate Chip'} supply={supply ? supply[0].choc_chip : 0} breadType={'plain'} description={'Chocolate Chip BB'} price={'$5.00'} setSpecial1Quantity={(e) => {
+                    {<OrderCard title={'Chocolate Chip'} supply={supply ? supply[0].choc_chip : 0} breadType={'plain'} description={'Chocolate Chip BB'} price={'$4.00'} setSpecial1Quantity={(e) => {
                         setSpecial1Quantity(e.target.value)
                         const tempC = [...count]
                         tempC[1] = parseInt(e.target.value)
@@ -237,7 +237,7 @@ const OrderForm = (props) => {
                         tempC[1] = parseInt(e.target.value)
                         setCount(tempC)
                     }} />}
-                    {<OrderCard title={'Apple Pie'} supply={supply ? supply[0].apple_pie : 0} breadType={'apple pie'} description={'Plain BB'} price={'$6.50'} setApplePieQuantity={(e) => {
+                    {<OrderCard title={'Apple Pie'} supply={supply ? supply[0].apple_pie : 0} breadType={'apple pie'} description={'Plain BB'} price={'$4.50'} setApplePieQuantity={(e) => {
                         setApplePieQuantity(e.target.value)
                         const tempC = [...count]
                         tempC[3] = parseInt(e.target.value)

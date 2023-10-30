@@ -76,7 +76,7 @@ const FullPage = (props) => {
                 <div className='subtitle'>Place order any day of the week!</div>
                 {/* <OrderForm id='page-form' /> */}
                 { <div className='heading'>We have closed shop for the Semester!</div>}
-                {/* <div className='subtitle'>Please come back next week! (Checkout our instagram or telegram to stay informed!)</div> */} */}
+                {/* <div className='subtitle'>Please come back next week! (Checkout our instagram or telegram to stay informed!)</div> */}
                 <hr className='page-line margin-7-top' />
                 <div className='subtitle'>PAYMENT INFO</div>
                 <div><a href='https://account.venmo.com/u/Its-BananaBread'><img className='br4' id='venmo-img' src={require('../images/ibbvenmoQR.png')} /></a></div>

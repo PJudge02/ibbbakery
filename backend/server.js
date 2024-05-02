@@ -4,7 +4,7 @@ const port = process.env.PORT || 3001;
 
 // Route for the root URL
 app.get('/', (req, res) => {
-    res.send('Welcome to the IBB Bakery API!');
+  res.json('Welcome to the IBB Bakery API!');
   });
 
 app.get('/api/test', (req, res) => {

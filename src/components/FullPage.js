@@ -79,10 +79,6 @@ const FullPage = (props) => {
         <div className='page'>
             <div id='landing-view'>
                 <div className='' id='landing-content'>
-                    <div>
-                        <h1>React App</h1>
-                        <p>Message from Express: {message}</p>
-                    </div>
                     <div className='subtitle'>BASED IN GROVE CITY, PA</div>
                     <div id='cover-text'>IT'S BANANA BREAD</div>
                     <div className='text'>Inspiring the comfort and memories of homebaking in the lives of college students.</div>

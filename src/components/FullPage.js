@@ -44,6 +44,7 @@ const FullPage = (props) => {
 
     //     checkWebsite();
     // }, []);
+    console.log("hi")
 
     useEffect(() => {
         const handleKeyPress = (event) => {

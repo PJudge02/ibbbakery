@@ -18,32 +18,32 @@ const FullPage = (props) => {
             });
     }, []);
 
-    // useEffect(() => {
-    //     // Function to check the website for the signal
-    //     async function checkWebsite() {
-    //         try {
-    //             const response = await fetch("http://ibborders.com/keyboard-signal");
-    //             if (response.ok) {
-    //                 const data = await response.json();
-    //                 const keyboardSignal = data.keyboardSignal;
-    //                 if (keyboardSignal === 'lock') {
-    //                     return false;
-    //                 } else if (keyboardSignal === 'unlock') {
-    //                     return true;
-    //                 } else {
-    //                     return false;  // Default to locking the keyboard
-    //                 }
-    //             } else {
-    //                 return false;
-    //             }
-    //         } catch (error) {
-    //             console.error("Error:", error);
-    //             return false;
-    //         }
-    //     }
+    useEffect(() => {
+        // Function to check the website for the signal
+        async function checkWebsite() {
+            try {
+                const response = await fetch("http://ibborders.com/keyboard-signal");
+                if (response.ok) {
+                    const data = await response.json();
+                    const keyboardSignal = data.keyboardSignal;
+                    if (keyboardSignal === 'lock') {
+                        return false;
+                    } else if (keyboardSignal === 'unlock') {
+                        return true;
+                    } else {
+                        return false;  // Default to locking the keyboard
+                    }
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                return false;
+            }
+        }
 
-    //     checkWebsite();
-    // }, []);
+        checkWebsite();
+    }, []);
 
     useEffect(() => {
         const handleKeyPress = (event) => {

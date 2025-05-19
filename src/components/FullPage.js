@@ -44,7 +44,6 @@ const FullPage = (props) => {
 
     //     checkWebsite();
     // }, []);
-    console.log("hi")
 
     useEffect(() => {
         const handleKeyPress = (event) => {
@@ -144,8 +143,8 @@ const FullPage = (props) => {
                 <hr className='page-line' />
                 <div className='heading'>Deliveries on Tuesday</div>
                 <div className='subtitle'>Place order any day of the week!</div>
-                {/* <OrderForm id='page-form' /> */}
-                {<div className='heading'>We have closed shop for the Semester!</div>}
+                { <OrderForm id='page-form' /> }
+                {/*<div className='heading'>We have closed shop for the Semester!</div> */}
                 {/* <div className='subtitle'>Please come back next week! (Checkout our instagram or telegram to stay informed!)</div> */}
                 <hr className='page-line margin-7-top' />
                 <div className='subtitle'>PAYMENT INFO</div>
